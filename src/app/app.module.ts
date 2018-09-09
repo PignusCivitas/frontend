@@ -13,6 +13,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { SlideComponent } from './slide/slide.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
+import { DownloadComponent } from './download/download.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './footer/footer.component';
     DashboardComponent,
     SlideComponent,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    DownloadComponent
   ],
   imports: [
     BrowserModule,
