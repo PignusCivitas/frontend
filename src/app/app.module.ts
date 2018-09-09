@@ -11,13 +11,15 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { SlideComponent } from './slide/slide.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    SlideComponent
+    SlideComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
