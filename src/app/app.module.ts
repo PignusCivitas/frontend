@@ -9,16 +9,20 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { SlideComponent } from './slide/slide.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    SlideComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
     MatToolbarModule,
     LayoutModule,
     MatButtonModule,
