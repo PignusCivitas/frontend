@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,6 +15,16 @@ import { SlideComponent } from './slide/slide.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { DownloadComponent } from './download/download.component';
+import { CitofonoComponent } from './citofono/citofono.component';
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes: Routes = [
+    {
+      path: 'citofono',
+      component: CitofonoComponent
+    },
+    { path: '**', component: PageNotFoundComponent }
+  ];
 
 @NgModule({
   declarations: [
@@ -23,7 +34,9 @@ import { DownloadComponent } from './download/download.component';
     SlideComponent,
     ContactComponent,
     FooterComponent,
-    DownloadComponent
+    DownloadComponent,
+    CitofonoComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +50,11 @@ import { DownloadComponent } from './download/download.component';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    RouterModule.forRoot(
+        appRoutes,
+        { enableTracing: false } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
