@@ -17,7 +17,7 @@ export class CitofonoComponent implements OnInit {
   anotherid;
 
   constructor() {
-    this.peer = new Peer(null, null);
+    this.peer = new Peer(null, {host: 'rtc.pignus.app', port: 443, path: '/', secure: true, debug: 3});
     console.log(this.peer);
   }
 
@@ -31,7 +31,7 @@ export class CitofonoComponent implements OnInit {
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
 
     this.peer.on('call', call => {
-      n.getUserMedia({video: true, audio: true}, stream => {
+      n.getUserMedia({video: false, audio: true}, stream => {
         call.answer(stream);
         call.on(stream, remotestream => {
           video.src = URL.createObjectURL(remotestream);
@@ -48,7 +48,7 @@ export class CitofonoComponent implements OnInit {
     const video = this.myvideo.nativeElement;
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
 
-    n.getUserMedia({video: true, audio: true}, (stream) => {
+    n.getUserMedia({video: false, audio: true}, (stream) => {
       const call = this.peer.call(this.anotherid, stream);
       call.on(stream, remotestream => {
         video.src = URL.createObjectURL(remotestream);
