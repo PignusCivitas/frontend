@@ -1,31 +1,53 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Pignus</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <app-dashboard></app-dashboard>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<!--Main Navigation-->
+<header>
+
+    <!--Navbar-->
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+        <mdb-navbar-brand>
+            <a class="logo navbar-brand waves-light" mdbWavesEffect href="#">pignus <sub>Pre-Alpha</sub></a>
+        </mdb-navbar-brand>
+        <links>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <a class="nav-link" href="#about-us">Sobre nosotros</a>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <a class="nav-link" href="#download">Descarga</a>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <a class="nav-link" href="#contact-us">Contacto</a>
+                </li>
+            </ul>
+        </links>
+    </mdb-navbar>
+
+    <!--Intro Section-->
+    <section class="view intro-2 rgba-gradient">
+        <div class="full-bg-img mask">
+            <div id="introPignus" class="container flex-center">
+                <div class="row flex-center pt-5 mt-3 w-100">
+                    <div class="col-md-6 text-center text-md-left margins">
+                        <div class="white-text">
+                            <h2 class="h1 h1-responsive wow fadeInLeft" data-wow-delay="0.3s">Comunidades menos vulnerables a la victimización</h2>
+                                <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                                <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Un comunidad informada es una comunidad más segura</h6>
+                                <br>
+                                <a href="#about-us" mdbBtn color="primary" class="wow fadeInLeft waves-light" data-wow-delay="0.3s" mdbWavesEffect>Conocer más</a>
+                                <a href="#download" mdbBtn color="success" class="wow fadeInLeft waves-light" data-wow-delay="0.3s" mdbWavesEffect>Download
+                                    <i class="fa fa-android left right" aria-hidden="true"></i>
+                                    <i class="fa fa-apple left" aria-hidden="true"></i>
+                                    <i class="fa fa-windows" aria-hidden="true"></i>
+                                </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 wow fadeInRight d-flex justify-content-center animated bounce" data-wow-delay="0.3s">
+                        <img src="assets/imgs/landing.png" alt="" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</header>
+<!--Main Navigation-->

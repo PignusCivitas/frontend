@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+.container-fluid {
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.intro-2 {
+  background: url("/assets/imgs/police.jpg")no-repeat center center;
+  background-size: cover;
+}
+.view {
+  height: 100vh !important;
+}
+.btn .fa {
+  margin-left: 3px;
+}
+.top-nav-collapse {
+  background-color: #2C4773 !important;
+}
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
+@media (max-width: 768px) {
+  .navbar:not(.top-nav-collapse) {
+      background: #2C4773 !important;
+  }
+  #introPignus {
+    padding-top: 2em;
+  }
+}
+h6 {
+  line-height: 1.7;
+}
+.rgba-gradient .full-bg-img {
+  background: linear-gradient(45deg, rgba(44, 72, 115, 0.6), rgba(53, 47, 21, 0.6) 100%);
+}
+@media (max-width: 450px) {
+  .margins {
+      margin-right: 1rem;
+      margin-left: 1rem;
+  }
+}
+@media (max-width: 740px) {
+  .full-height,
+  .full-height body,
+  .full-height header,
+  .full-height header .view {
+      height: 1020px;
+  }
+}
