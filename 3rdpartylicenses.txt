@@ -1,4 +1,4 @@
-angular-bootstrap-md@6.2.3
+angular-bootstrap-md@6.2.2
 MIT
 MIT
 
@@ -77,11 +77,11 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-chart.js@2.7.2
+chart.js@2.5.0
 MIT
 The MIT License (MIT)
 
-Copyright (c) 2018 Chart.js Contributors
+Copyright (c) 2013-2017 Nick Downie
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
