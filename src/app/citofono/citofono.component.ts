@@ -17,23 +17,33 @@ export class CitofonoComponent implements OnInit {
   anotherid;
 
   constructor() {
-    this.peer = new Peer(null, {host: 'rtc.pignus.app', port: 443, path: '/', secure: true, debug: 3});
-    console.log(this.peer);
+
+    const peerserver = {
+      host: 'rtc.pignus.app',
+      port: 443,
+      path: '/',
+      secure: true,
+      debug: 3,
+    };
+
+    this.peer = new Peer(null, peerserver);
+
   }
 
   ngOnInit() {
+
     this.peer.on('open', id => {
       this.mypeerid = id;
-      console.log('id', id);
     });
-    const n = <any>navigator;
-    const video = this.myvideo.nativeElement;
+
+    let n = <any>navigator;
+    let video = this.myvideo.nativeElement;
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
 
     this.peer.on('call', call => {
       n.getUserMedia({video: true, audio: true}, stream => {
         call.answer(stream);
-        call.on(stream, remotestream => {
+        call.on('stream', remotestream => {
           video.src = URL.createObjectURL(remotestream);
           video.play();
         });
@@ -44,13 +54,14 @@ export class CitofonoComponent implements OnInit {
   }
 
   makeCall() {
-    const n = <any>navigator;
-    const video = this.myvideo.nativeElement;
+
+    let n = <any>navigator;
+    let video = this.myvideo.nativeElement;
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
 
     n.getUserMedia({video: true, audio: true}, (stream) => {
-      const call = this.peer.call(this.anotherid, stream);
-      call.on(stream, remotestream => {
+      let call = this.peer.call(this.anotherid, stream);
+      call.on('stream', remotestream => {
         video.src = URL.createObjectURL(remotestream);
         video.play();
       });
