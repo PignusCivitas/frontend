@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 declare var Peer: any;
 
@@ -10,11 +11,15 @@ declare var Peer: any;
 export class CitofonoComponent implements OnInit {
 
   @ViewChild('myvideo') myvideo: ElementRef;
+  @ViewChild('myanswerButton') myanswerButton: ElementRef;
+  @ViewChild('mymsg') mymsg: ElementRef;
+  @ViewChild('myhangup') myhangup: ElementRef;
 
 
   peer;
   mypeerid;
   anotherid;
+
 
   constructor() {
 
@@ -36,39 +41,68 @@ export class CitofonoComponent implements OnInit {
       this.mypeerid = id;
     });
 
-    let n = <any>navigator;
-    let video = this.myvideo.nativeElement;
+    const n = <any>navigator;
+    const video = this.myvideo.nativeElement;
+    const answerButton = this.myanswerButton.nativeElement;
+    const msg = this.mymsg.nativeElement;
+    const hangup = this.myhangup.nativeElement;
+    hangup.style = 'display: none';
+    answerButton.style = 'display: none';
+
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
+
+    const answerOnClick = fromEvent(answerButton, 'click');
 
     this.peer.on('call', call => {
       n.getUserMedia({video: true, audio: true}, stream => {
-        call.answer(stream);
-        call.on('stream', remotestream => {
-          video.src = URL.createObjectURL(remotestream);
-          video.play();
+        answerButton.style = 'display: inline';
+        msg.innerHTML = 'Incoming Call...';
+        answerOnClick.subscribe(x => {
+          call.answer(stream);
+          call.on('stream', remotestream => {
+            video.src = URL.createObjectURL(remotestream);
+            video.play();
+            answerButton.style = 'display: none';
+            hangup.style = 'display: inline';
+            msg.innerHtml = 'Connected';
+          });
+        }, err => {
+          console.log('Error:', err);
+        }, () => {
+          console.log('Completed');
         });
+
+
       }, error => {
         console.log('Failed to get stream', error);
       });
     });
+
   }
 
   makeCall() {
 
-    let n = <any>navigator;
-    let video = this.myvideo.nativeElement;
+    const n = <any>navigator;
+    const video = this.myvideo.nativeElement;
+    const answerButton = this.myanswerButton.nativeElement;
+    const msg = this.mymsg.nativeElement;
+    const hangup = this.myhangup.nativeElement;
+
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
 
     n.getUserMedia({video: true, audio: true}, (stream) => {
-      let call = this.peer.call(this.anotherid, stream);
+      const call = this.peer.call(this.anotherid, stream);
       call.on('stream', remotestream => {
         video.src = URL.createObjectURL(remotestream);
         video.play();
+        hangup.style = 'display:inline';
       });
     }, error => {
       console.log('Failed to get local stream', error);
     });
 
   }
+
+
 
 }
