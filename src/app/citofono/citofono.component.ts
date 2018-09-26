@@ -49,7 +49,7 @@ export class CitofonoComponent implements OnInit {
     hangupButton.style = 'display: none';
     answerButton.style = 'display: none';
 
-    this.mymsg = 'Waiting...';
+    this.mymsg = 'Awaiting...';
 
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
 
@@ -82,11 +82,18 @@ export class CitofonoComponent implements OnInit {
           // Hangup click event handler
           hangupOnClick.subscribe(x => {
             call.close();
-            hangupButton.style = 'display: none';
           }, err => {
             console.log('Error:', err);
           }, () => {
             console.log('Completed');
+          });
+
+          call.on('close', () => {
+            video.src = '';
+            hangupButton.style = 'display: none';
+            this.mymsg = 'Awaiting...';
+            stream.getAudioTracks()[0].stop();
+            stream.getVideoTracks()[0].stop();
           });
 
 
@@ -115,18 +122,38 @@ export class CitofonoComponent implements OnInit {
     // Variables and constants
     const n = <any>navigator;
     const video = this.myvideo.nativeElement;
-    const hangup = this.myhangup.nativeElement;
+    const hangupButton = this.myhangup.nativeElement;
     this.mymsg = 'Calling...';
     n.getUserMedia = n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia;
+
+    const hangupOnClick = fromEvent(hangupButton, 'click');
 
     // Making the Call
     n.getUserMedia({video: true, audio: true}, (stream) => {
       const call = this.peer.call(this.anotherid, stream);
+
+      call.on('close', () => {
+        video.src = '';
+        hangupButton.style = 'display: none';
+        this.mymsg = 'Awaiting...';
+        stream.getAudioTracks()[0].stop();
+        stream.getVideoTracks()[0].stop();
+      });
+
       call.on('stream', remotestream => {
         video.src = URL.createObjectURL(remotestream);
         video.play();
-        hangup.style = 'display:inline';
-        console.log('Conected');
+        hangupButton.style = 'display:inline';
+        this.mymsg = 'Connected';
+
+        // Hangup click event handler
+        hangupOnClick.subscribe(x => {
+          call.close();
+        }, err => {
+          console.log('Error:', err);
+        }, () => {
+          console.log('Completed');
+        });
       });
     }, error => {
       console.log('Failed to get local stream ' + error);
