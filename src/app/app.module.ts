@@ -18,8 +18,13 @@ import { FooterComponent } from './footer/footer.component';
 import { DownloadComponent } from './download/download.component';
 import { CitofonoComponent } from './citofono/citofono.component';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
+    {
+      path: '',
+      component: HomeComponent
+    },
     {
       path: 'citofono',
       component: CitofonoComponent
@@ -37,7 +42,8 @@ const appRoutes: Routes = [
     FooterComponent,
     DownloadComponent,
     CitofonoComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
