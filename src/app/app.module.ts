@@ -17,6 +17,8 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { DownloadComponent } from './download/download.component';
 import { CitofonoComponent } from './citofono/citofono.component';
+import { CFooterComponent } from './citofono/cfooter/cfooter.component';
+import { NavigationComponent } from './citofono/navigation/navigation.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
@@ -26,8 +28,8 @@ const appRoutes: Routes = [
       component: HomeComponent
     },
     {
-      path: 'citofono',
-      component: CitofonoComponent
+      path: 'dashboard',
+      component: DashboardComponent
     },
     { path: '**', component: PageNotFoundComponent }
   ];
@@ -43,7 +45,9 @@ const appRoutes: Routes = [
     DownloadComponent,
     CitofonoComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    CFooterComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

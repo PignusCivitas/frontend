@@ -1,0 +1,81 @@
+<!--Main Navigation-->
+<header>
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed float-left">
+        <a class="logo-wrapper waves-effect">
+            <img src="/assets/imgs/PignusLogo.png" class="img-fluid" alt="Logo Pignus">
+        </a>
+        <div class="list-group list-group-flush">
+
+            <a routerLink="/dashboard" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-phone mr-3"></i>Citófono
+            </a>
+            <a routerLink="profiles/profile1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-user mr-3"></i>Profile</a>
+            <a routerLink="tables/table1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-table mr-3"></i>Tables</a>
+            <a routerLink="maps/map1" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-map mr-3"></i>Maps</a>
+            <a routerLink="nonExistingPath" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-exclamation mr-3"></i>404</a>
+
+        </div>
+
+    </div>
+    <!-- Sidebar -->
+
+    <!--Navbar-->
+    <mdb-navbar [containerInside]="false" SideClass="navbar navbar-expand-lg navbar-light white">
+
+        <!-- Navbar brand 
+        <logo class="ml-3">
+            <a class="navbar-brand" href="https://mdbootstrap.com/angular/angular-bootstrap-getting-started/">
+                <strong class="blue-text"><img src="/assets/imgs/icon.png" /></strong>
+            </a>
+        </logo>-->
+
+        <!-- Collapsible content -->
+        <links>
+
+            <!-- Links 
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" mdbWavesEffect>Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/angular/angular-bootstrap-getting-started/" target="_blank" mdbWavesEffect>About MDB</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/angular/getting-started/" target="_blank" mdbWavesEffect>Free download</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mdbootstrap.com/angular/angular-tutorial/" target="_blank" mdbWavesEffect>Free tutorials</a>
+                </li>
+            </ul>
+             Links -->
+
+            <!-- Search form -->
+            <ul class="navbar-nav nav-flex-icons mr-auto">
+
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/mdbootstrap" class="nav-link" target="_blank" mdbWavesEffect>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://twitter.com/MDBootstrap" class="nav-link" target="_blank" mdbWavesEffect>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+        </links>
+        <!-- Collapsible content -->
+
+    </mdb-navbar>
+    <!--/.Navbar-->
+
+</header>
+<!--Main Navigation-->

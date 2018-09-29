@@ -1,10 +1,20 @@
-<div class="container">
-    Mensaje: <p>{{mymsg}}</p>
-    <h1> My Id is - {{mypeerid}} </h1>
-    <input class="input" type="text" [(ngModel)] = "anotherid" />
-    <button class="btn btn-primary" (click) = "makeCall()">Call</button>
-    <button class="btn btn-success" #myanswerButton>Answer</button>
-    <button class="btn btn-danger" #myhangup>Hangup</button>
-    <video #myvideo ></video>
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-info">{{mymsg}}</div>
+            <h1 class="h2"> My Id is - {{mypeerid}} </h1>
+            <div class="md-form">
+                <input mdbInputDirective type="text" class="form-control" [(ngModel)] = "anotherid" required />
+                <button class="btn btn-primary" (click) = "makeCall()">Call</button>
+                <button class="btn btn-success" #myanswerButton>Answer</button>
+                <button class="btn btn-danger" #myhangup>Hangup</button>
+            </div>        
+        </div>
+        <div class="col">
+            <video #myvideo ></video>
+        </div>
+    </div>
 </div>
+
 
