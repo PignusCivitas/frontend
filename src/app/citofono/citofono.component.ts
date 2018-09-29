@@ -68,10 +68,19 @@ export class CitofonoComponent implements OnInit {
             call.answer(stream);
             call.on('stream', remotestream => {
               video.src = URL.createObjectURL(remotestream);
-              video.play();
-              answerButton.style = 'display: none';
-              hangupButton.style = 'display: inline';
-              this.mymsg = 'Connected';
+              // Show loading animation.
+              const playPromise = video.play();
+
+              if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                  answerButton.style = 'display: none';
+                  hangupButton.style = 'display: inline';
+                  this.mymsg = 'Connected';
+                })
+                .catch(error => {
+                  console.log(error);
+                });
+              }
             });
           }, err => {
             console.log('Error:', err);
@@ -89,11 +98,22 @@ export class CitofonoComponent implements OnInit {
           });
 
           call.on('close', () => {
-            video.src = '';
-            hangupButton.style = 'display: none';
-            this.mymsg = 'Awaiting...';
-            stream.getAudioTracks()[0].stop();
-            stream.getVideoTracks()[0].stop();
+            // Show loading animation.
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+              playPromise.then(_ => {
+                video.src = '';
+                hangupButton.style = 'display: none';
+                this.mymsg = 'Awaiting...';
+                stream.getAudioTracks()[0].stop();
+                stream.getVideoTracks()[0].stop();
+              })
+              .catch(error => {
+                console.log(error);
+              });
+            }
+
           });
 
 
@@ -111,9 +131,7 @@ export class CitofonoComponent implements OnInit {
 
     // On disconnected handler
     this.peer.on('disconnected', () => {
-      console.log('Reconecting');
       this.peer.reconnect();
-      console.log();
     });
   }
 
@@ -133,18 +151,37 @@ export class CitofonoComponent implements OnInit {
       const call = this.peer.call(this.anotherid, stream);
 
       call.on('close', () => {
-        video.src = '';
-        hangupButton.style = 'display: none';
-        this.mymsg = 'Awaiting...';
-        stream.getAudioTracks()[0].stop();
-        stream.getVideoTracks()[0].stop();
+        // Show loading animation.
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            video.src = '';
+            hangupButton.style = 'display: none';
+            this.mymsg = 'Awaiting...';
+            stream.getAudioTracks()[0].stop();
+            stream.getVideoTracks()[0].stop();
+          })
+          .catch(error => {
+            console.log(error);
+          });
+        }
       });
 
       call.on('stream', remotestream => {
         video.src = URL.createObjectURL(remotestream);
-        video.play();
-        hangupButton.style = 'display:inline';
-        this.mymsg = 'Connected';
+        // Show loading animation.
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            hangupButton.style = 'display:inline';
+            this.mymsg = 'Connected';
+          })
+          .catch(error => {
+            console.log(error);
+          });
+        }
 
         // Hangup click event handler
         hangupOnClick.subscribe(x => {
